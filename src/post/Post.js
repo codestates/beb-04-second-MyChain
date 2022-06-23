@@ -1,27 +1,40 @@
 import React from "react";
 import "./Post.css";
+import { Link } from "react-router-dom";
 
-const Post = ({ tweet }) => {
-  const parsedDate = new Date(tweet.createdAt).toLocaleDateString("ko-kr");
-
+function Post() {
   return (
-    <div>
-      <li className="tweet" id={tweet.id}>
-        <div className="tweet__profile">
-          <img src={tweet.picture} alt="" />
-        </div>
-        <div className="tweet__content">
-          <div className="tweet__userInfo">
-            <div className="tweet__userInfo--wrapper">
-              <span className="tweet__username">{tweet.username}</span>
-              <span className="tweet__createdAt">{parsedDate}</span>
-            </div>
+    <div className="board_wrap">
+      <div className="board_title">
+        <strong>커뮤니티</strong>
+        <p>커뮤니티를 활성화하여 보상을 받아보세요!</p>
+      </div>
+      <div className="board_write_wrap">
+        <div className="board_write">
+          <div className="title">
+            <dl>
+              <dt>제목</dt>
+              <dd>
+                <input type="text" placeholder="제목 입력" />
+              </dd>
+            </dl>
           </div>
-          <div className="tweet__message">{tweet.content}</div>
+          <div className="info"></div>
+          <div className="cont">
+            <textarea placeholder="내용 입력"></textarea>
+          </div>
         </div>
-      </li>
+        <div className="bt_wrap">
+          <a href="view.html" className="on">
+            등록
+          </a>
+          <Link to="/">
+            <div>취소</div>
+          </Link>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default Post;

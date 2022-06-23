@@ -1,8 +1,8 @@
 import React from "react";
 import "./SignUp.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-function SignUp() {
+function SignUp({ account }) {
   const [signForm, setSignForm] = useState({
     email: "",
     pwd: "",
