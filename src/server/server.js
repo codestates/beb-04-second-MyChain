@@ -24,18 +24,11 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post("/dd", (req, res) => {
-  // const selectedContent = '';
-  //   console.log("email : " + req.body.signForm.email);
-  //   console.log("password" + req.body.signForm.pwd);
-  //   console.log("password_chk" + req.body.signForm.pwd_chk);
-  //   console.log("nick_name" + req.body.signForm.nick_name);
   const id = req.body.signForm.email;
-  const pw = req.body.signForm.pwd;
-  const pwChk = req.body.signForm.pwd_chk;
-  const nick = req.body.signForm.nick_name;
-  //   console.log("id = " + id);
+  // const pw = req.body.signForm.pwd;
+  // const pwChk = req.body.signForm.pwd_chk;
+  // const nick = req.body.signForm.nick_name;
   //   console.log(req.body.signForm);
-
   // json형식의 object에서 각 value만 담아서 배열을 만든다 아래insert ?구문에 들어갈 [ary]배열을 만들기 위함
   const valExtract = req.body.signForm;
   const ary = [];
@@ -43,7 +36,6 @@ app.post("/dd", (req, res) => {
     ary.push(valExtract[key]);
   }
   //console.log(ary);
-
   connection.query(
     "SELECT * FROM users where userName=?",
     id,
@@ -75,9 +67,16 @@ app.post("/dd", (req, res) => {
       }
     }
   );
-  //res.send("myChain 코딩 중!");
+  res.send("myChain 코딩 중!");
 });
 
+app.post("/ff", (req, res) => {
+  const email = req.body.loginForm.email;
+  const pwd = req.body.loginForm.pwd;
+
+  console.log("email = " + email);
+  console.log("pwd = " + pwd);
+});
 // app.post("/insert", (req, res) => {
 //   const test = req.body.test;
 //   // console.log(req.body);

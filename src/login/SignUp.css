@@ -13,3 +13,9 @@
   font-weight: 300;
   border-radius: 1.4rem;
 }
+
+.contain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
