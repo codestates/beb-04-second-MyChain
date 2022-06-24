@@ -62,12 +62,12 @@ app.post("/dd", (req, res) => {
         } else {
           //email을 조회해서 결과가 있다면 이미 등록된 아이디
           //   res.send("이미가입된 사용자 입니다.")
+          res.send({ message: "already in use" });
           console.log("이미가입된 사용자입니다.");
         }
       }
     }
   );
-  res.send("myChain 코딩 중!");
 });
 
 app.post("/ff", (req, res) => {

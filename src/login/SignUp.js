@@ -6,6 +6,7 @@ import { color } from "@chakra-ui/react";
 function SignUp() {
   const [emailMessage, setEmailMessage] = useState("");
   const [pwdMessage, setPwdMessage] = useState("");
+  const [resp, setResp] = useState("");
   const [signForm, setSignForm] = useState({
     email: "",
     pwd: "",
@@ -36,7 +37,12 @@ function SignUp() {
 
   const clickSignUp = async () => {
     //가입진행
-    if (emailMessage === "" && pwdMessage === "") {
+    if (
+      emailMessage === "" &&
+      signForm.email !== "" &&
+      pwdMessage === "" &&
+      signForm.pwd !== ""
+    ) {
       //유효성 검사 완료 시 진행
       try {
         fetch("http://localhost:3001/dd", {
@@ -45,9 +51,16 @@ function SignUp() {
             "content-type": "application/json",
           },
           body: JSON.stringify({ signForm }),
-        }).then((res) => {
-          document.location.href = "/login";
-        });
+        }).then((res) => res.json().then((msg) => setResp(msg["message"])));
+        // .then(function (response) {
+        //   // response.json().then((msg) => {
+        //   //   setResp(msg["message"]);
+        //   // });
+        // });
+        // .then(function(response) {
+        //   response.text().then((s) => console.log(s));
+        // });
+
         // .then((res) => res.json())
         // .then((json) => {
         //   console.log("json = " + json);
