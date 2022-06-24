@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Main.css";
-import { Link } from "react-router-dom";
-import { AiFillEdit } from "react-icons/ai";
+import { Link, useLocation } from "react-router-dom";
+import {
+  AiFillEdit,
+  AiOutlineVerticalRight,
+  AiOutlineVerticalLeft,
+  AiOutlineLeft,
+  AiOutlineRight,
+} from "react-icons/ai";
 
 function Main() {
+  const [viewCount, setViewCount] = useState(0);
+
+  const PostView = () => {
+    setViewCount(viewCount + 1);
+    console.log(viewCount);
+  };
+
   return (
     <div className="board_wrap">
       <div className="board_title">
@@ -25,18 +38,24 @@ function Main() {
             <div className="num">5</div>
             <div className="title">
               <Link to="/postview">
-                <div className="write_title">글 제목이 들어가는곳</div>
+                <div className="write_title" onClick={PostView}>
+                  글 제목이 들어가는곳
+                </div>
               </Link>
             </div>
             <div className="writer">김코딩</div>
             <div className="date">2022.02.22</div>
-            <div className="count">33</div>
+            <div className="count">{viewCount}</div>
           </div>
         </div>
         <div className="board_page">
-          <a href="#" className="bt first"></a>
-          <a href="#" className="bt prev"></a>
-          <a href="#" className="num on">
+          <a href="#" className="arrow_icon">
+            <AiOutlineVerticalRight />
+          </a>
+          <a href="#" className="arrow_icon">
+            <AiOutlineLeft />
+          </a>
+          <a href="#" className="num">
             1
           </a>
           <a href="#" className="num">
@@ -51,8 +70,12 @@ function Main() {
           <a href="#" className="num">
             5
           </a>
-          <a href="#" className="bt next"></a>
-          <a href="#" className="bt last"></a>
+          <a href="#" className="arrow_icon">
+            <AiOutlineRight />
+          </a>
+          <a href="#" className="arrow_icon">
+            <AiOutlineVerticalLeft />
+          </a>
         </div>
         <div className="bt_wrap">
           <Link to="/post">

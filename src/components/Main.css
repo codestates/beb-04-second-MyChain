@@ -33,7 +33,14 @@
   background-color: darkslateblue;
   color: #fff;
   font-size: 1.4rem;
-  padding: 10px;
+  padding: 2rem;
+  font-weight: 700;
+  border-radius: 1.4rem;
+}
+
+.board_write:hover {
+  background-color: rgb(167, 156, 238);
+  cursor: pointer;
 }
 
 .write_title {
@@ -97,31 +104,30 @@
 .board_page {
   margin-top: 30px;
   text-align: center;
-  font-size: 0;
 }
 
 .board_page a {
   display: inline-block;
-  width: 32px;
-  height: 32px;
-  box-sizing: border-box;
+  width: 3rem;
+  height: 3rem;
   vertical-align: middle;
-  border: 2px solid darkslateblue;
-  border-left: 0;
-  line-height: 100%;
+  border: 3px solid darkslateblue;
+  line-height: 2.5rem;
+  border-radius: 999rem;
+  font-weight: bold;
+}
+
+.arrow_icon {
+  padding-top: 3px;
+  font-weight: bolder;
+}
+
+.board_page a:hover {
+  background-color: darkslateblue;
+  color: #fff;
+  cursor: pointer;
 }
 
 .board_page a.num {
-  padding-top: 5px;
   font-size: 1.4rem;
-}
-
-.board_page a.num.on {
-  border-color: darkslateblue;
-  background: darkslateblue;
-  color: #fff;
-}
-
-.board_page a:first-child {
-  border-left: 2px solid darkslateblue;
 }

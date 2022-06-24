@@ -9,15 +9,15 @@ function Wallet({ account, onClickConnect, onClickDisConnect }) {
       {/* account 가 없으면 지갑 연결하라는 버튼이 나온다 */}
       {account ? (
         <div>
-          <button className="disconnectButton" onClick={onClickDisConnect}>
+          <div className="disconnectButton" onClick={onClickDisConnect}>
             disConnect Wallet
-          </button>
+          </div>
         </div>
       ) : (
         <div>
-          <button className="connectButton" onClick={onClickConnect}>
+          <div className="connectButton" onClick={onClickConnect}>
             Connect Wallet
-          </button>
+          </div>
         </div>
       )}
     </div>
