@@ -5,11 +5,13 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mysql = require("mysql"); // mysql 모듈 사용
 const dotenv = require("dotenv");
-dotenv.config();
+// const path = require("path");
+dotenv.config({ path: "../../.env" });
 // console.log(process.env.DATABASE_USERNAME);
 // console.log(process.env.DATABASE_PASSWORD);
 // console.log(process.env.DATABASE_NAME);
-
+// import dotenv from "dotenv";
+// dotenv.config({ path: "../../.env" });
 var connection = mysql.createConnection({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USERNAME, //mysql의 id
@@ -49,7 +51,7 @@ app.post("/dd", (req, res) => {
         if (rows.length < 1) {
           //email을 조회에서 결과가 없다면 insert
           connection.query(
-            "INSERT INTO users(userName,password,address,privateKey) values (?)",
+            "INSERT INTO users(userName,password,nickName,address,privateKey) values (?)",
             [ary],
             function (err, rows, fields) {
               if (err) {
@@ -71,9 +73,10 @@ app.post("/dd", (req, res) => {
 });
 
 app.post("/ff", (req, res) => {
-  const email = req.body.loginForm.email;
-  const pwd = req.body.loginForm.pwd;
+  const email = req.body.id;
+  const pwd = req.body.pw;
 
+  console.log(req.body);
   console.log("email = " + email);
   console.log("pwd = " + pwd);
 });

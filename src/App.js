@@ -10,13 +10,11 @@ import Wallet from "./pages/Wallet";
 import Nav from "./components/Nav";
 import Login from "./login/Login";
 import SignUp from "./login/SignUp";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 
 function App() {
   const [account, setAccount] = useState("");
-  const [isRemember, setIsRemember] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(["id"]);
 
   const Connect = async () => {
     try {
@@ -43,14 +41,6 @@ function App() {
   const DisConnect = () => {
     setAccount(account === "");
   };
-
-  useEffect(() => {
-    // console.log("cookie id = ");
-    // if (cookies.id !== undefined) {
-    //   setIsRemember(true);
-    //   console.log("remember = " + isRemember);
-    // }
-  });
 
   return (
     <>
