@@ -19,6 +19,7 @@ function Main() {
       ); // 백엔드에서 게시물 작성한 json 데이터 get 요청
       setPosts(res.data);
       // 불러온 json 데이터를 useState에 담는다
+      console.log(posts);
     };
     postData();
   }, []);
