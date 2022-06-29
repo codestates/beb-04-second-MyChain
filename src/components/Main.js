@@ -1,20 +1,38 @@
 import React, { useState, useEffect } from "react";
 import "./Main.css";
-import { Link, useLocation } from "react-router-dom";
-import {
-  AiFillEdit,
-  AiOutlineVerticalRight,
-  AiOutlineVerticalLeft,
-  AiOutlineLeft,
-  AiOutlineRight,
-} from "react-icons/ai";
+import axios from "axios";
+import PostList from "../post/PostList";
+import Pagination from "../post/Pagination";
+import { Link } from "react-router-dom";
+import { AiFillEdit } from "react-icons/ai";
 
 function Main() {
-  const [viewCount, setViewCount] = useState(0);
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsViewPage] = useState(5);
+  // 한 페이지에 몇개의 게시물을 보여줄지 설정 👉 5개
 
-  const PostView = () => {
-    setViewCount(viewCount + 1);
-    console.log(viewCount);
+  useEffect(() => {
+    const postData = async () => {
+      const res = await axios.get(
+        "https://gateway.pinata.cloud/ipfs/QmbTrmBRSrpySZMMKW99MP6yaN9Mf5btKWUDgP4FTTN19j"
+      ); // 백엔드에서 게시물 작성한 json 데이터 get 요청
+      setPosts(res.data);
+      // 불러온 json 데이터를 useState에 담는다
+    };
+    postData();
+  }, []);
+
+  const pageIndex = currentPage * postsViewPage;
+  // 한 페이지에 몇개의 게시물 = 현재 페이지 x 게시물 5개
+  const pageIndexFirst = pageIndex - postsViewPage;
+  // 게시물들이 담긴 압축한곳 숫자표시 = 현재 페이지 x 게시물 5개 - 게시물 5개
+  const indexPosts = (posts) => {
+    let indexPosts = 0;
+    indexPosts = posts.slice(pageIndexFirst, pageIndex);
+    // json 데이터가 담긴 걸 slice 한다
+    // 5개씩 하나의 공간에 담아서 총 표시
+    return indexPosts;
   };
 
   return (
@@ -27,56 +45,30 @@ function Main() {
       </div>
       <div>
         <div className="board_list">
-          <div className="top">
-            <div className="num">No.</div>
-            <div className="title">Title</div>
-            <div className="writer">Writer</div>
-            <div className="date">Date</div>
-            <div className="count">Views</div>
+          <div className="board_top">
+            <div className="board_num">No.</div>
+            <div className="board_title">Title</div>
+            <div className="board_writer">Writer</div>
+            <div className="board_date">Date</div>
+            <div className="board_count">Views</div>
           </div>
           <div>
-            <div className="num">5</div>
-            <div className="title">
-              <Link to="/postview">
-                <div className="write_title" onClick={PostView}>
-                  글 제목이 들어가는곳
-                </div>
-              </Link>
-            </div>
-            <div className="writer">김코딩</div>
-            <div className="date">2022.02.22</div>
-            <div className="count">{viewCount}</div>
+            {indexPosts(posts).map((list) => (
+              <PostList
+                key={list.id}
+                id={list.id}
+                title={list.title}
+                writer={list.writer}
+                createdAt={list.createdAt}
+              />
+            ))}
           </div>
         </div>
-        <div className="board_page">
-          <a href="#" className="arrow_icon">
-            <AiOutlineVerticalRight />
-          </a>
-          <a href="#" className="arrow_icon">
-            <AiOutlineLeft />
-          </a>
-          <a href="#" className="num">
-            1
-          </a>
-          <a href="#" className="num">
-            2
-          </a>
-          <a href="#" className="num">
-            3
-          </a>
-          <a href="#" className="num">
-            4
-          </a>
-          <a href="#" className="num">
-            5
-          </a>
-          <a href="#" className="arrow_icon">
-            <AiOutlineRight />
-          </a>
-          <a href="#" className="arrow_icon">
-            <AiOutlineVerticalLeft />
-          </a>
-        </div>
+        <Pagination
+          postsViewPage={postsViewPage}
+          totalPosts={posts.length}
+          paginate={setCurrentPage}
+        />
         <div className="bt_wrap">
           <Link to="/post">
             <div className="board_write">

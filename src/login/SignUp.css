@@ -5,11 +5,97 @@
   text-decoration: none;
 }
 
-.SignUpBtn {
+.signupWrapper {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.signupItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.signupTitle {
+  font-size: 3rem;
+  padding: 1.5rem;
+  font-weight: 800;
+}
+
+.signupForm {
+  background-color: rgb(119, 111, 168);
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 1rem;
+  font-weight: 700;
+  border-radius: 1.4rem;
+}
+
+.signupInput {
+  height: 3rem;
+  font-size: 1.4rem;
+  width: 90%;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 1.4rem;
+  border: none;
+}
+
+.signupInput:hover {
+  background-color: rgb(212, 207, 221);
+}
+
+.loginBtn {
   background-color: darkslateblue;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.4rem;
   padding: 2rem;
-  font-weight: 300;
+  font-weight: 700;
   border-radius: 1.4rem;
+}
+
+.signup_btn_wrap {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 20%);
+  text-align: center;
+}
+
+.signup_btn_item {
+  display: flex;
+  cursor: pointer;
+  flex-direction: row;
+}
+
+.signup_btn_wallet {
+  background-color: rgb(119, 111, 168);
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 2rem;
+  font-weight: 700;
+  border-radius: 1.4rem;
+  margin-right: 1rem;
+}
+
+.signup_btn_wallet:hover {
+  background-color: rgb(167, 156, 238);
+  cursor: pointer;
+}
+
+.signup_btn {
+  background-color: #46d369;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 2rem;
+  font-weight: 700;
+  margin-left: 1rem;
+  border-radius: 1.4rem;
+}
+
+.signup_btn:hover {
+  background-color: rgb(156, 238, 174);
+  cursor: pointer;
 }

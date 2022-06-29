@@ -11,17 +11,66 @@
 }
 
 .board_title {
-  margin-bottom: 30px;
+  margin-bottom: 1.5rem;
 }
 
 .board_title_notice {
   font-size: 3rem;
+  font-weight: 600;
 }
 
 .board_title_detail {
   margin-top: 5px;
   font-size: 1.4rem;
 }
+
+/*  👇👇👇👇👇 메뉴 CSS 👇👇👇👇👇*/
+
+.board_list {
+  width: 100%;
+  border-top: 3px solid darkslateblue;
+}
+
+.board_top {
+  border-bottom: 3px solid darkslateblue;
+}
+
+.board_list > div:last-child {
+  border-bottom: 2px solid darkslateblue;
+}
+
+.board_list > div > div {
+  display: inline-block;
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.board_list > div.board_top > div {
+  font-weight: 600;
+}
+
+.board_num {
+  width: 10%;
+}
+
+.board_title {
+  width: 52%;
+}
+
+.board_writer {
+  width: 12%;
+}
+
+.board_date {
+  width: 14%;
+}
+
+.board_count {
+  width: 12%;
+}
+
+/* 👆👆👆👆👆 메뉴 CSS 👆👆👆👆👆*/
 
 .bt_wrap {
   margin-top: 30px;
@@ -41,93 +90,4 @@
 .board_write:hover {
   background-color: rgb(167, 156, 238);
   cursor: pointer;
-}
-
-.write_title {
-  color: black;
-}
-
-/*  👇👇👇👇👇 메뉴 CSS 👇👇👇👇👇*/
-
-.board_list {
-  width: 100%;
-  border-top: 4px solid darkslateblue;
-  border-bottom: 1px solid darkslateblue;
-}
-
-.top {
-  border-bottom: 2px solid darkslateblue;
-}
-
-.board_list > div:last-child {
-  border-bottom: 3px solid darkslateblue;
-}
-
-.board_list > div > div {
-  display: inline-block;
-  padding: 15px 0;
-  text-align: center;
-  font-size: 1.4rem;
-}
-
-.board_list > div.top > div {
-  font-weight: 600;
-}
-
-.num {
-  width: 10%;
-}
-
-.board_list .title {
-  width: 52%;
-  text-align: left;
-}
-
-.board_list .top .title {
-  text-align: center;
-}
-
-.board_list .writer {
-  width: 12%;
-}
-
-.board_list .date {
-  width: 14%;
-}
-
-.board_list .count {
-  width: 12%;
-}
-
-/* 👆👆👆👆👆 메뉴 CSS 👆👆👆👆👆*/
-
-.board_page {
-  margin-top: 30px;
-  text-align: center;
-}
-
-.board_page a {
-  display: inline-block;
-  width: 3rem;
-  height: 3rem;
-  vertical-align: middle;
-  border: 3px solid darkslateblue;
-  line-height: 2.5rem;
-  border-radius: 999rem;
-  font-weight: bold;
-}
-
-.arrow_icon {
-  padding-top: 3px;
-  font-weight: bolder;
-}
-
-.board_page a:hover {
-  background-color: darkslateblue;
-  color: #fff;
-  cursor: pointer;
-}
-
-.board_page a.num {
-  font-size: 1.4rem;
 }

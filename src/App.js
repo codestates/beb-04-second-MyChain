@@ -4,11 +4,13 @@ import Main from "./components/Main";
 import Post from "./post/Post";
 import PostView from "./post/PostView";
 import Trade from "./pages/Trade";
+import Minting from "./web3/Minting";
+import MyAnimal from "./web3/NFT-List";
 import Wallet from "./pages/Wallet";
 import Nav from "./components/Nav";
 import Login from "./login/Login";
 import SignUp from "./login/SignUp";
-import { useState } from "react";
+import React, { useState } from "react";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -47,6 +49,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/trade" element={<Trade />} />
+          <Route path="/minting" element={<Minting account={account} />} />
+          <Route path="/nftlist" element={<MyAnimal account={account} />} />
           <Route path="/profile" element={<Profile />} />
           <Route
             path="/wallet"
@@ -60,7 +64,8 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/post" element={<Post />} />
-          <Route path="/postview" element={<PostView />} />
+          <Route path="/postview/:id" element={<PostView />} />
+          {/* 제목을 클릭했을때 json 그에 맞는 id값을 찾아 들어감  */}
           <Route path="/signup" element={<SignUp account={account} />} />
         </Routes>
       </Router>
