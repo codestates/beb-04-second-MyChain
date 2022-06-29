@@ -1,37 +1,117 @@
 import React from "react";
-import "./Login.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+
+// import { createTokens } from "../components/jwt.js";
+//import { createTokens } from "../components/JWT";
+// import dotenv from "dotenv";
+//const dotenv = require("dotenv");
+//const path = require("path");
+// dotenv.config({
+//   path: "../../.env",
+// });
 
 function Login() {
+  const [cookies, setCookie] = useCookies(["id"]);
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    pwd: "",
+  });
+
+  const onChange = (e) => {
+    setLoginForm({
+      ...loginForm,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const clickLogin = async () => {
+    const id = loginForm.email;
+    const pw = loginForm.pwd;
+
+    const loginData = {
+      loginType: "custom",
+      id: id,
+      pw: pw,
+    };
+
+    const url = "http://localhost:3001/ff";
+
+    return axios
+      .post(url, loginData)
+      .then((response) => {
+        if (response.status >= 200 && response.status <= 204) {
+          console.log("로그인됨");
+          console.log(response.data.id);
+          setCookie("id", response.data.id);
+          //this.props.handleLogin();
+          //sessionStorage.setItem("id", id);
+          //console.log(sessionStorage);
+        }
+      })
+      .then((res) => {
+        console.log("이동함");
+        //this.props.history.push("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
+      });
+    /*
+    // alert("로그인버튼");
+    try {
+      fetch("http://localhost:3001/ff", {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ loginForm }),
+      });
+      // .then((res) => {
+      //   document.location.href = "/login";
+      // });
+      // .then((res) => res.json())
+      // .then((json) => {
+      //   console.log("json = " + json);
+      //   // this.setSignForm({
+      //   //   data: json.user_id,
+      //   // })
+      // });
+    } catch (error) {
+      console.error(error);
+    }
+    */
+  };
   return (
-    <div className="login_Wrapper">
-      <div className="login_Items">
-        <div className="login_Title"></div>
-        <div className="login_Form">
-          <div>
-            <input
-              className="login_Input"
-              type="text"
-              name="email"
-              placeholder="Email"
-            />
-          </div>
-          <div>
-            <input
-              className="login_Input"
-              type="password"
-              name="pwd"
-              placeholder="Password"
-            />
-          </div>
+    <div className="contain">
+      <nav>
+        <div>
+          <h1>로그인</h1>
         </div>
-        <div className="login_btn_wrap">
-          <div className="login_btn_item">
-            <div>
-              <div className="login_btn">Login</div>
-            </div>
-          </div>
+        <div>
+          <input
+            type="text"
+            name="email"
+            placeholder="이메일 입력"
+            onChange={onChange}
+          />
         </div>
-      </div>
+        <div>
+          <input
+            type="password"
+            name="pwd"
+            placeholder="비밀번호 입력"
+            onChange={onChange}
+          />
+        </div>
+        <div>
+          <button className="loginBtn" onClick={clickLogin}>
+            로그인
+          </button>
+        </div>
+      </nav>
     </div>
   );
 }

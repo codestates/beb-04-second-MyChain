@@ -5,11 +5,13 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mysql = require("mysql"); // mysql 모듈 사용
 const dotenv = require("dotenv");
-dotenv.config();
+// const path = require("path");
+dotenv.config({ path: "../../.env" });
 // console.log(process.env.DATABASE_USERNAME);
 // console.log(process.env.DATABASE_PASSWORD);
 // console.log(process.env.DATABASE_NAME);
-
+// import dotenv from "dotenv";
+// dotenv.config({ path: "../../.env" });
 var connection = mysql.createConnection({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USERNAME, //mysql의 id
@@ -24,18 +26,11 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post("/dd", (req, res) => {
-  // const selectedContent = '';
-  //   console.log("email : " + req.body.signForm.email);
-  //   console.log("password" + req.body.signForm.pwd);
-  //   console.log("password_chk" + req.body.signForm.pwd_chk);
-  //   console.log("nick_name" + req.body.signForm.nick_name);
   const id = req.body.signForm.email;
-  const pw = req.body.signForm.pwd;
-  const pwChk = req.body.signForm.pwd_chk;
-  const nick = req.body.signForm.nick_name;
-  //   console.log("id = " + id);
+  // const pw = req.body.signForm.pwd;
+  // const pwChk = req.body.signForm.pwd_chk;
+  // const nick = req.body.signForm.nick_name;
   //   console.log(req.body.signForm);
-
   // json형식의 object에서 각 value만 담아서 배열을 만든다 아래insert ?구문에 들어갈 [ary]배열을 만들기 위함
   const valExtract = req.body.signForm;
   const ary = [];
@@ -43,7 +38,6 @@ app.post("/dd", (req, res) => {
     ary.push(valExtract[key]);
   }
   //console.log(ary);
-
   connection.query(
     "SELECT * FROM users where userName=?",
     id,
@@ -57,7 +51,7 @@ app.post("/dd", (req, res) => {
         if (rows.length < 1) {
           //email을 조회에서 결과가 없다면 insert
           connection.query(
-            "INSERT INTO users(userName,password,address,privateKey) values (?)",
+            "INSERT INTO users(userName,password,nickName,address,privateKey) values (?)",
             [ary],
             function (err, rows, fields) {
               if (err) {
@@ -75,9 +69,17 @@ app.post("/dd", (req, res) => {
       }
     }
   );
-  //res.send("myChain 코딩 중!");
+  res.send("myChain 코딩 중!");
 });
 
+app.post("/ff", (req, res) => {
+  const email = req.body.id;
+  const pwd = req.body.pw;
+
+  console.log(req.body);
+  console.log("email = " + email);
+  console.log("pwd = " + pwd);
+});
 // app.post("/insert", (req, res) => {
 //   const test = req.body.test;
 //   // console.log(req.body);

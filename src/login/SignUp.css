@@ -99,3 +99,8 @@
   background-color: rgb(156, 238, 174);
   cursor: pointer;
 }
+.contain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

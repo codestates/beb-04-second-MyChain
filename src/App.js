@@ -10,7 +10,8 @@ import Wallet from "./pages/Wallet";
 import Nav from "./components/Nav";
 import Login from "./login/Login";
 import SignUp from "./login/SignUp";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -63,6 +64,7 @@ function App() {
             }
           />
           <Route path="/login" element={<Login />} />
+
           <Route path="/post" element={<Post />} />
           <Route path="/postview/:id" element={<PostView />} />
           {/* 제목을 클릭했을때 json 그에 맞는 id값을 찾아 들어감  */}
