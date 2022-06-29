@@ -75,10 +75,41 @@ app.post("/dd", (req, res) => {
 app.post("/ff", (req, res) => {
   const email = req.body.id;
   const pwd = req.body.pw;
-
+  const loginInfo = [email, pwd];
   console.log(req.body);
   console.log("email = " + email);
   console.log("pwd = " + pwd);
+  connection.query(
+    "SELECT * FROM users where userName=? and password=?",
+    loginInfo,
+    function (err, rows, fields) {
+      if (rows.length < 1) {
+        console.log("입력정보가 맞지 않습니다.");
+      } else {
+        console.log("로그인됨");
+        res.status(200).send({ message: "login success", id: email });
+      }
+    }
+  );
+});
+app.post("/selectBoard", (req, res) => {
+  connection.query("SELECT * FROM board", function (err, rows, fields) {
+    // console.log(rows[0].id);
+    // console.log(rows[0].title);
+    // console.log(rows[0].writer);
+    // console.log(rows[0].created_at);
+    // console.log(rows[0].views);
+    if (err) {
+      console.log("실패");
+    } else {
+      if (rows.length < 1) {
+        console.log("조회된결과가 하나도 없습니다.");
+      } else {
+        res.send(rows);
+      }
+    }
+    // title, writer, created_at, views
+  });
 });
 // app.post("/insert", (req, res) => {
 //   const test = req.body.test;

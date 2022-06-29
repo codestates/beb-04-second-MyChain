@@ -10,19 +10,66 @@ function Main() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsViewPage] = useState(5);
+  const [resp, setResp] = useState();
+  // title, writer, created_at, views
   // 한 페이지에 몇개의 게시물을 보여줄지 설정 👉 5개
 
+  // useEffect(() => {
+  // const postData = async () => {
+  //   const res = await axios.get(
+  //     "https://gateway.pinata.cloud/ipfs/QmbTrmBRSrpySZMMKW99MP6yaN9Mf5btKWUDgP4FTTN19j"
+  //   ); // 백엔드에서 게시물 작성한 json 데이터 get 요청
+  //   setPosts(res.data);
+  //   // 불러온 json 데이터를 useState에 담는다
+  // };
+  // postData();
+
+  // }, []);
+  const valExtract = [];
+  const ary = [];
+  // for (key in valExtract) {
+  //   ary.push(valExtract[key]);
+  // }
   useEffect(() => {
-    const postData = async () => {
-      const res = await axios.get(
-        "https://gateway.pinata.cloud/ipfs/QmbTrmBRSrpySZMMKW99MP6yaN9Mf5btKWUDgP4FTTN19j"
-      ); // 백엔드에서 게시물 작성한 json 데이터 get 요청
-      setPosts(res.data);
-      // 불러온 json 데이터를 useState에 담는다
+    const postData = async (res) => {
+      try {
+        fetch("http://localhost:3001/selectBoard", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(),
+        }).then((res) =>
+          res.json().then((result) => {
+            for (let i = 0; i < result.length; i++) {
+              ary.push(result[i]);
+              // console.log(ary[i]);
+              // console.log(result[i]);
+            }
+            setResp(ary);
+            // console.log(typeof JSON.parse(ary[1])); //object
+            // console.log(typeof ary[1]); //string
+            console.log(ary);
+            // console.log(ary[1].title); ////////////
+            // console.log(ary.length);
+            // console.log(result[0]);
+            // console.log(result[1]);
+            // console.log(result[2]);
+          })
+        );
+        // .then(console.log(resp["0"]));
+        // .then((json) => {
+        //   //console.log(json);
+        //   // setResp(json);
+        //   // console.log(resp);
+        // });
+        // .then((res) => res.json().then((msg) => setResp(msg["message"])));
+      } catch (error) {
+        console.error(error);
+      }
     };
     postData();
   }, []);
-
   const pageIndex = currentPage * postsViewPage;
   // 한 페이지에 몇개의 게시물 = 현재 페이지 x 게시물 5개
   const pageIndexFirst = pageIndex - postsViewPage;
@@ -43,7 +90,8 @@ function Main() {
           Activate your community to receive rewards!
         </p>
       </div>
-      <div>
+      {/* <div>{resp}</div> */}
+      {/* <div>
         <div className="board_list">
           <div className="board_top">
             <div className="board_num">No.</div>
@@ -76,7 +124,7 @@ function Main() {
             </div>
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
