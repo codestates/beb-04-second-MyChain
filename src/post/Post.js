@@ -1,27 +1,46 @@
 import React from "react";
 import "./Post.css";
+import { Link } from "react-router-dom";
+import { AiFillEdit, AiOutlineStop } from "react-icons/ai";
 
-const Post = ({ tweet }) => {
-  const parsedDate = new Date(tweet.createdAt).toLocaleDateString("ko-kr");
-
+function Post() {
   return (
-    <div>
-      <li className="tweet" id={tweet.id}>
-        <div className="tweet__profile">
-          <img src={tweet.picture} alt="" />
-        </div>
-        <div className="tweet__content">
-          <div className="tweet__userInfo">
-            <div className="tweet__userInfo--wrapper">
-              <span className="tweet__username">{tweet.username}</span>
-              <span className="tweet__createdAt">{parsedDate}</span>
-            </div>
+    <div className="post_wrap">
+      <div className="post_title">
+        <span className="post_title_notice">DAO MyChain Community</span>
+        <p className="post_title_detail">
+          Activate your community to receive rewards!
+        </p>
+      </div>
+      <div className="post_write_wrap">
+        <div className="post_write_content">
+          <div className="post_title">
+            <input
+              className="post_input_title"
+              type="text"
+              placeholder="write title"
+            />
           </div>
-          <div className="tweet__message">{tweet.content}</div>
+          <textarea
+            className="post_message"
+            placeholder="write content"
+          ></textarea>
         </div>
-      </li>
+      </div>
+      <div className="post_btn_wrap">
+        <div className="post_btn_item">
+          <div className="post_write_btn">
+            <AiFillEdit /> Writing
+          </div>
+          <Link to="/">
+            <div className="post_cancel">
+              Cancel <AiOutlineStop />
+            </div>
+          </Link>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default Post;

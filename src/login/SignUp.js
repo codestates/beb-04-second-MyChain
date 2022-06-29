@@ -3,15 +3,16 @@ import "./SignUp.css";
 import { useState, useEffect } from "react";
 import { color } from "@chakra-ui/react";
 
-function SignUp() {
+function SignUp({ account }) {
   const [emailMessage, setEmailMessage] = useState("");
   const [pwdMessage, setPwdMessage] = useState("");
   const [resp, setResp] = useState("");
   const [signForm, setSignForm] = useState({
     email: "",
     pwd: "",
-    pwd_chk: "",
     nick_name: "",
+    account: account,
+    private_key: "",
   });
   // 이메일 유효성 검사
   const emailChk = (e) => {
@@ -28,7 +29,8 @@ function SignUp() {
   };
   //비밀번호 유효성 검사
   const pwdChk = (e) => {
-    if (signForm.pwd != signForm.pwd_chk) {
+    console.log("by name  = " + document.getElementsByName("pwd_chk")[0].value);
+    if (signForm.pwd != document.getElementsByName("pwd_chk")[0].value) {
       setPwdMessage("비밀번호가 일치하지 않습니다.");
     } else {
       setPwdMessage("");
@@ -41,7 +43,8 @@ function SignUp() {
       emailMessage === "" &&
       signForm.email !== "" &&
       pwdMessage === "" &&
-      signForm.pwd !== ""
+      signForm.pwd !== "" &&
+      signForm.account !== ""
     ) {
       //유효성 검사 완료 시 진행
       try {
@@ -114,7 +117,6 @@ function SignUp() {
             type="password"
             name="pwd_chk"
             placeholder="비밀번호 확인"
-            onChange={onChange}
             onBlur={pwdChk}
           />
           <div style={{ color: "red" }}>{pwdMessage}</div>
@@ -127,7 +129,13 @@ function SignUp() {
             onChange={onChange}
           />
         </div>
-        <div>지갑연결</div>
+        <div>
+          {account !== "" ? (
+            <div style={{ color: "green" }}> 연결된 지갑 : {account}</div>
+          ) : (
+            <div style={{ color: "red" }}> 홈으로 가서 지갑을 연결하세요</div>
+          )}
+        </div>
         <div>
           <button className="SignUpBtn" onClick={clickSignUp}>
             가입하기

@@ -1,7 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+
+// import { createTokens } from "../components/jwt.js";
+//import { createTokens } from "../components/JWT";
+// import dotenv from "dotenv";
+//const dotenv = require("dotenv");
+//const path = require("path");
+// dotenv.config({
+//   path: "../../.env",
+// });
 
 function Login() {
+  const [cookies, setCookie] = useCookies(["id"]);
   const [loginForm, setLoginForm] = useState({
     email: "",
     pwd: "",
@@ -15,6 +28,38 @@ function Login() {
   };
 
   const clickLogin = async () => {
+    const id = loginForm.email;
+    const pw = loginForm.pwd;
+
+    const loginData = {
+      loginType: "custom",
+      id: id,
+      pw: pw,
+    };
+
+    const url = "http://localhost:3001/ff";
+
+    return axios
+      .post(url, loginData)
+      .then((response) => {
+        if (response.status >= 200 && response.status <= 204) {
+          console.log("로그인됨");
+          console.log(response.data.id);
+          setCookie("id", response.data.id);
+          //this.props.handleLogin();
+          //sessionStorage.setItem("id", id);
+          //console.log(sessionStorage);
+        }
+      })
+      .then((res) => {
+        console.log("이동함");
+        //this.props.history.push("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
+      });
+    /*
     // alert("로그인버튼");
     try {
       fetch("http://localhost:3001/ff", {
@@ -37,6 +82,7 @@ function Login() {
     } catch (error) {
       console.error(error);
     }
+    */
   };
   return (
     <div className="contain">
