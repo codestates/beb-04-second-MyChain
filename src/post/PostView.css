@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.postview_wrap {
+  width: 80rem;
+  margin: 5rem auto;
+}
+
+.postview_title {
+  margin-bottom: 30px;
+}
+
+.postview_title_notice {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.postview_title_detail {
+  margin-top: 5px;
+  font-size: 1.4rem;
+}
+
+.postview_view_wrap {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem 1rem;
+  border: 1rem solid rgb(119, 111, 168);
+  border-radius: 2.5rem;
+}
+
+.postview_view_content {
+  margin: 0.5rem;
+  justify-content: center;
+  align-content: center;
+}
+
+.post_view_title {
+  font-size: 2rem;
+  width: 100%;
+  padding: 1rem;
+  font-weight: 600;
+}
+
+.post_view_title_flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.post_view_writer {
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.post_view_date {
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-top: 0.2rem;
+}
+
+.postview_content {
+  font-size: 1.4rem;
+  height: 10rem;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1.4rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.postview_btn_wrap {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.postview_btn_item {
+  display: flex;
+  cursor: pointer;
+  flex-direction: row;
+}
+
+.postview_view_btn {
+  background-color: rgb(196, 196, 6);
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 2rem;
+  font-weight: 700;
+  border-radius: 1.4rem;
+  margin-right: 1rem;
+}
+
+.postview_view_btn:hover {
+  background-color: rgb(211, 211, 69);
+  cursor: pointer;
+}
+
+.postview_cancel {
+  background-color: #d34646;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 2rem;
+  font-weight: 700;
+  margin-left: 1rem;
+  border-radius: 1.4rem;
+}
+
+.postview_cancel:hover {
+  background-color: #e27070;
+  cursor: pointer;
+}
