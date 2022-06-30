@@ -28,8 +28,8 @@ function Nav() {
         <input className="searchInput" placeholder="Search" />
       </div>
       <div className="headerItems">
-        <Link to="/trade">
-          <div className="tradeBtn">Trade</div>
+        <Link to="/minting">
+          <div className="tradeBtn">NFT-Zone</div>
         </Link>
 
         <Link to="/profile">

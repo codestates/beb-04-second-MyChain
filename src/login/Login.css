@@ -5,23 +5,27 @@
   text-decoration: none;
 }
 
+@font-face {
+  font-family: "LeeSeoyun";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .login_Wrapper {
   position: absolute;
-  top: 40%;
+  top: 45%;
   left: 50%;
+  width: 30%;
   transform: translate(-50%, -50%);
   text-align: center;
+  font-family: "LeeSeoyun";
 }
 
 .login_Items {
   display: flex;
   flex-direction: column;
-}
-
-.login_Title {
-  font-size: 3rem;
-  padding: 1.5rem;
-  font-weight: 800;
 }
 
 .login_Form {
@@ -34,6 +38,7 @@
 }
 
 .login_Input {
+  font-family: "LeeSeoyun";
   height: 3rem;
   font-size: 1.4rem;
   width: 90%;
@@ -72,5 +77,24 @@
 
 .login_btn:hover {
   background-color: rgb(156, 238, 174);
+  cursor: pointer;
+}
+
+.logout_btn {
+  position: absolute;
+  margin-top: 3rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: #eb75db;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 2rem;
+  font-weight: 700;
+  border-radius: 1.4rem;
+}
+
+.logout_btn:hover {
+  background-color: #eba0e1;
   cursor: pointer;
 }

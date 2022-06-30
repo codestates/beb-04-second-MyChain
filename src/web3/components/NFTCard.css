@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: "PFStardust";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/PFStardust.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.nft_view_img {
+  border-radius: 1rem;
+  height: 15rem;
+  width: 15rem;
+}
+
+.post_view_title {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.nft_btn_wrap {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.nft_btn_item {
+  display: flex;
+  cursor: pointer;
+  flex-direction: row;
+}
+
+.nft_list_btn {
+  background-color: #eb75db;
+  color: #fff;
+  font-size: 2rem;
+  padding: 2rem;
+  font-weight: 700;
+  margin-right: 1rem;
+  border-radius: 1.4rem;
+  white-space: pre;
+}
+
+.nft_list_btn:hover {
+  background-color: #eba0e1;
+  cursor: pointer;
+}
+
+.nft_sell_btn {
+  background-color: #3ece75;
+  color: #fff;
+  font-size: 2rem;
+  padding: 2rem;
+  font-weight: 700;
+  border-radius: 1.4rem;
+  margin-left: 1rem;
+  white-space: pre;
+}
+
+.nft_sell_btn:hover {
+  background-color: #7fdba2;
+  cursor: pointer;
+}

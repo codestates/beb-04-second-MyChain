@@ -1,25 +1,35 @@
 import React, { useState, useEffect } from "react";
-import "./Main.css";
-import axios from "axios";
 import PostList from "../post/PostList";
 import Pagination from "../post/Pagination";
 import { Link } from "react-router-dom";
 import { AiFillEdit } from "react-icons/ai";
+import "./Main.css";
 
 function Main() {
-  const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsViewPage] = useState(5);
-  // 한 페이지에 몇개의 게시물을 보여줄지 설정 👉 5개
+  const [resp, setResp] = useState([]);
+
+  const ary = [];
 
   useEffect(() => {
     const postData = async () => {
-      const res = await axios.get(
-        "https://gateway.pinata.cloud/ipfs/QmbTrmBRSrpySZMMKW99MP6yaN9Mf5btKWUDgP4FTTN19j"
-      ); // 백엔드에서 게시물 작성한 json 데이터 get 요청
-      setPosts(res.data);
-      // 불러온 json 데이터를 useState에 담는다
-      console.log(posts);
+      try {
+        fetch("http://localhost:3001/selectBoard", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(),
+        }).then((res) =>
+          res.json().then((result) => {
+            ary.push(result);
+            setResp(result);
+          })
+        );
+      } catch (error) {
+        console.error(error);
+      }
     };
     postData();
   }, []);
@@ -28,9 +38,9 @@ function Main() {
   // 한 페이지에 몇개의 게시물 = 현재 페이지 x 게시물 5개
   const pageIndexFirst = pageIndex - postsViewPage;
   // 게시물들이 담긴 압축한곳 숫자표시 = 현재 페이지 x 게시물 5개 - 게시물 5개
-  const indexPosts = (posts) => {
+  const indexPosts = (post) => {
     let indexPosts = 0;
-    indexPosts = posts.slice(pageIndexFirst, pageIndex);
+    indexPosts = post.slice(pageIndexFirst, pageIndex);
     // json 데이터가 담긴 걸 slice 한다
     // 5개씩 하나의 공간에 담아서 총 표시
     return indexPosts;
@@ -54,7 +64,7 @@ function Main() {
             <div className="board_count">Views</div>
           </div>
           <div>
-            {indexPosts(posts).map((list) => (
+            {indexPosts(resp).map((list) => (
               <PostList
                 key={list.id}
                 id={list.id}
@@ -67,7 +77,7 @@ function Main() {
         </div>
         <Pagination
           postsViewPage={postsViewPage}
-          totalPosts={posts.length}
+          totalPosts={resp.length}
           paginate={setCurrentPage}
         />
         <div className="bt_wrap">

@@ -3,18 +3,20 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Main from "./components/Main";
 import Post from "./post/Post";
 import PostView from "./post/PostView";
-import Trade from "./pages/Trade";
-import Minting from "./web3/Minting";
-import MyAnimal from "./web3/NFT-List";
+import NFTMint from "./web3/routes/NFTMint";
+import NFTList from "./web3/routes/NFTList";
+import NFTSell from "./web3/routes/NFTSell";
 import Wallet from "./pages/Wallet";
 import Nav from "./components/Nav";
 import Login from "./login/Login";
 import SignUp from "./login/SignUp";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+// import Web3 from "web3";
 
 function App() {
   const [account, setAccount] = useState("");
 
+  // const web3 = new Web3(window.ethereum);
   const Connect = async () => {
     try {
       // try 문 안의 코드가 쭉 실행되고 에러가 없다면 catch는 건너뛴다
@@ -37,9 +39,10 @@ function App() {
       console.error(error); // 👉 에러가 발생했다고 출력
     }
   };
-  const DisConnect = () => {
-    setAccount(account === "");
-  };
+
+  useEffect(() => {
+    Connect(); // getAccount 한번만 실행
+  }, [account]);
 
   return (
     <>
@@ -48,25 +51,28 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/trade" element={<Trade />} />
-          <Route path="/minting" element={<Minting account={account} />} />
-          <Route path="/nftlist" element={<MyAnimal account={account} />} />
+          <Route path="/minting" element={<NFTMint account={account} />} />
+          <Route
+            path="/minting/nftlist"
+            element={<NFTList account={account} />}
+          />
+          <Route
+            path="/minting/nftsell"
+            element={<NFTSell account={account} />}
+          />
           <Route path="/profile" element={<Profile />} />
           <Route
             path="/wallet"
-            element={
-              <Wallet
-                account={account}
-                onClickConnect={Connect}
-                onClickDisConnect={DisConnect}
-              />
-            }
+            element={<Wallet account={account} onClickConnect={Connect} />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/post" element={<Post />} />
           <Route path="/postview/:id" element={<PostView />} />
           {/* 제목을 클릭했을때 json 그에 맞는 id값을 찾아 들어감  */}
-          <Route path="/signup" element={<SignUp account={account} />} />
+          <Route
+            path="/signup"
+            element={<SignUp account={account} onClickConnect={Connect} />}
+          />
         </Routes>
       </Router>
     </>

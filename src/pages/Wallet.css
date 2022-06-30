@@ -27,16 +27,11 @@
   cursor: pointer;
 }
 
-.disconnectButton {
-  background-color: #d34646;
+.beconnectButton {
+  background-color: #15b645;
   color: #fff;
   font-size: 1.4rem;
   padding: 2rem;
   font-weight: 700;
   border-radius: 1.4rem;
-}
-
-.disconnectButton:hover {
-  background-color: #e27070;
-  cursor: pointer;
 }

@@ -5,11 +5,13 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mysql = require("mysql"); // mysql 모듈 사용
 const dotenv = require("dotenv");
-dotenv.config();
+// const path = require("path");
+dotenv.config({ path: "../../.env" });
 // console.log(process.env.DATABASE_USERNAME);
 // console.log(process.env.DATABASE_PASSWORD);
 // console.log(process.env.DATABASE_NAME);
-
+// import dotenv from "dotenv";
+// dotenv.config({ path: "../../.env" });
 var connection = mysql.createConnection({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USERNAME, //mysql의 id
@@ -24,18 +26,11 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post("/dd", (req, res) => {
-  // const selectedContent = '';
-  //   console.log("email : " + req.body.signForm.email);
-  //   console.log("password" + req.body.signForm.pwd);
-  //   console.log("password_chk" + req.body.signForm.pwd_chk);
-  //   console.log("nick_name" + req.body.signForm.nick_name);
   const id = req.body.signForm.email;
-  const pw = req.body.signForm.pwd;
-  const pwChk = req.body.signForm.pwd_chk;
-  const nick = req.body.signForm.nick_name;
-  //   console.log("id = " + id);
+  // const pw = req.body.signForm.pwd;
+  // const pwChk = req.body.signForm.pwd_chk;
+  // const nick = req.body.signForm.nick_name;
   //   console.log(req.body.signForm);
-
   // json형식의 object에서 각 value만 담아서 배열을 만든다 아래insert ?구문에 들어갈 [ary]배열을 만들기 위함
   const valExtract = req.body.signForm;
   const ary = [];
@@ -43,41 +38,79 @@ app.post("/dd", (req, res) => {
     ary.push(valExtract[key]);
   }
   //console.log(ary);
-
-  connection.query(
-    "SELECT * FROM users where userName=?",
-    id,
-    function (err, rows, fields) {
-      if (err) {
-        console.error(err);
-      } else {
-        // res.send(rows);
-        // console.log("성공");
-        // console.log("row size = " + rows.length);
-        if (rows.length < 1) {
-          //email을 조회에서 결과가 없다면 insert
-          connection.query(
-            "INSERT INTO users(userName,password,address,privateKey) values (?)",
-            [ary],
-            function (err, rows, fields) {
-              if (err) {
-                console.log(err);
-              } else {
-                console.log("insert 성공");
-              }
+  connection.query("SELECT * FROM users where userName=?", id, function(
+    err,
+    rows,
+    fields
+  ) {
+    if (err) {
+      console.error(err);
+    } else {
+      // res.send(rows);
+      // console.log("성공");
+      // console.log("row size = " + rows.length);
+      if (rows.length < 1) {
+        //email을 조회에서 결과가 없다면 insert
+        connection.query(
+          "INSERT INTO users(userName,password,nickName,address,privateKey) values (?)",
+          [ary],
+          function(err, rows, fields) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log("insert 성공");
             }
-          );
-        } else {
-          //email을 조회해서 결과가 있다면 이미 등록된 아이디
-          //   res.send("이미가입된 사용자 입니다.")
-          console.log("이미가입된 사용자입니다.");
-        }
+          }
+        );
+      } else {
+        //email을 조회해서 결과가 있다면 이미 등록된 아이디
+        //   res.send("이미가입된 사용자 입니다.")
+        console.log("이미가입된 사용자입니다.");
+      }
+    }
+  });
+  res.send("myChain 코딩 중!");
+});
+
+app.post("/ff", (req, res) => {
+  const email = req.body.id;
+  const pwd = req.body.pw;
+  const loginInfo = [email, pwd];
+  console.log(req.body);
+  console.log("email = " + email);
+  console.log("pwd = " + pwd);
+  connection.query(
+    "SELECT * FROM users where userName=? and password=?",
+    loginInfo,
+    function(err, rows, fields) {
+      if (rows.length < 1) {
+        console.log("입력정보가 맞지 않습니다.");
+      } else {
+        console.log("로그인됨");
+        res.status(200).send({ message: "login success", id: email });
       }
     }
   );
-  //res.send("myChain 코딩 중!");
 });
-
+app.post("/selectBoard", (req, res) => {
+  connection.query("SELECT * FROM board", function(err, rows, fields) {
+    // console.log(rows[0].id);
+    // console.log(rows[0].title);
+    // console.log(rows[0].writer);
+    // console.log(rows[0].created_at);
+    // console.log(rows[0].views);
+    if (err) {
+      console.log("실패");
+    } else {
+      if (rows.length < 1) {
+        console.log("조회된결과가 하나도 없습니다.");
+      } else {
+        res.send(rows);
+      }
+    }
+    // title, writer, created_at, views
+  });
+});
 // app.post("/insert", (req, res) => {
 //   const test = req.body.test;
 //   // console.log(req.body);
