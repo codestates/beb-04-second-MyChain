@@ -105,7 +105,7 @@ app.post("/selectBoard", (req, res) => {
       if (rows.length < 1) {
         console.log("조회된결과가 하나도 없습니다.");
       } else {
-        res.send(rows);
+        res.send({ rows });
       }
     }
     // title, writer, created_at, views

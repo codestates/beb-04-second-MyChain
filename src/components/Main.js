@@ -10,7 +10,21 @@ function Main() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsViewPage] = useState(5);
-  const [resp, setResp] = useState();
+  // const [resp, setResp] = useState([
+  //   {
+  //     id: "",
+  //     title: "",
+  //     writer: "",
+  //     created_at: "",
+  //     views: "",
+  //   },
+  // ]);
+  const [id, setId] = useState([]);
+  const [writer, setWriter] = useState([]);
+  const [views, setViews] = useState([]);
+  // const [id, setId] = useState([]);
+  // const [id, setId] = useState([]);
+
   // title, writer, created_at, views
   // 한 페이지에 몇개의 게시물을 보여줄지 설정 👉 5개
 
@@ -40,21 +54,29 @@ function Main() {
           },
           body: JSON.stringify(),
         }).then((res) =>
-          res.json().then((result) => {
-            for (let i = 0; i < result.length; i++) {
-              ary.push(result[i]);
-              // console.log(ary[i]);
-              // console.log(result[i]);
+          res.json().then(function (result) {
+            // console.log(result.rows[0].title);
+            // console.log(result.rows.length);
+            for (let i = 0; i < result.rows.length; i++) {
+              // console.log(result.rows[i]);
+              setId(result.rows[i].id);
+              setWriter(result.rows[i].writer);
+              setViews(result.rows[i].views);
+              //ary.push(result.rows[i]); //xxxxxxxxxxxxxxxxx
             }
-            setResp(ary);
-            // console.log(typeof JSON.parse(ary[1])); //object
-            // console.log(typeof ary[1]); //string
-            console.log(ary);
-            // console.log(ary[1].title); ////////////
-            // console.log(ary.length);
-            // console.log(result[0]);
-            // console.log(result[1]);
-            // console.log(result[2]);
+            // setResp(ary);
+            // console.log(ary[0].id);
+            // console.log(ary[0].title);
+            // console.log(ary[0].writer);
+            // console.log(ary[0].created_at);
+            // console.log(ary[0].views);
+            // console.log(" ");
+            // console.log(ary[1].id);
+            // console.log(ary[1].title);
+            // console.log(ary[1].writer);
+            // console.log(ary[1].created_at);
+            // console.log(ary[1].views);
+            //return ary;
           })
         );
         // .then(console.log(resp["0"]));
@@ -84,13 +106,17 @@ function Main() {
 
   return (
     <div className="board_wrap">
-      <div className="board_title">
+      {/* <div className="board_title">
         <strong className="board_title_notice">DAO MyChain Community</strong>
         <p className="board_title_detail">
           Activate your community to receive rewards!
         </p>
+      </div> */}
+      <div id={id}>
+        <div>{writer}</div>
+        <div>{views}</div>
       </div>
-      {/* <div>{resp}</div> */}
+
       {/* <div>
         <div className="board_list">
           <div className="board_top">
