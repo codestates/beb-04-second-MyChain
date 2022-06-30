@@ -24,6 +24,7 @@ function Main() {
         }).then((res) =>
           res.json().then((result) => {
             ary.push(result);
+            console.log(result);
             setResp(result);
           })
         );

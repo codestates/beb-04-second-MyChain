@@ -12,12 +12,13 @@ privateKey varchar(255)
 
 <!-- 게시판 테이블 생성 -->
 
-CREATE TABLE board (
-id int PRIMARY KEY AUTO_INCREMENT,
-title varchar(255),
-writer varchar(255),
-created_at timestamp default now(),
-views int
+create table `board` (
+`id` int PRIMARY KEY AUTO_INCREMENT,
+`title` varchar(255),
+`content` varchar(1000),
+`writer` varchar(255),
+`created_at` timestamp default now(),
+`views` int
 );
 
 <!-- 조회 -->
