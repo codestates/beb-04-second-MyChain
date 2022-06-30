@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.walletConnectWrapper {
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.connectButton {
+  background-color: darkslateblue;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 2rem;
+  font-weight: 700;
+  border-radius: 1.4rem;
+}
+
+.connectButton:hover {
+  background-color: rgb(167, 156, 238);
+  cursor: pointer;
+}
+
+.beconnectButton {
+  background-color: #15b645;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 2rem;
+  font-weight: 700;
+  border-radius: 1.4rem;
+}

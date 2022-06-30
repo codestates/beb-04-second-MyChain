@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: "LeeSeoyun";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.board_wrap {
+  width: 80rem;
+  margin: 5rem auto;
+}
+
+.board_title {
+  margin-bottom: 1.5rem;
+}
+
+.board_title_notice {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.board_title_detail {
+  margin-top: 5px;
+  font-size: 1.4rem;
+}
+
+/*  👇👇👇👇👇 메뉴 CSS 👇👇👇👇👇*/
+
+.board_list {
+  width: 100%;
+  border-top: 3px solid darkslateblue;
+}
+
+.board_top {
+  border-bottom: 3px solid darkslateblue;
+}
+
+.board_list > div:last-child {
+  border-bottom: 2px solid darkslateblue;
+}
+
+.board_list > div > div {
+  display: inline-block;
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.board_list > div.board_top > div {
+  font-weight: 600;
+}
+
+.board_num {
+  width: 10%;
+}
+
+.board_title {
+  width: 52%;
+}
+
+.board_writer {
+  width: 12%;
+}
+
+.board_date {
+  width: 14%;
+}
+
+.board_count {
+  width: 12%;
+}
+
+/* 👆👆👆👆👆 메뉴 CSS 👆👆👆👆👆*/
+
+.bt_wrap {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.board_write {
+  display: inline-block;
+  background-color: darkslateblue;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 2rem;
+  font-weight: 700;
+  border-radius: 1.4rem;
+}
+
+.board_write:hover {
+  background-color: rgb(167, 156, 238);
+  cursor: pointer;
+}

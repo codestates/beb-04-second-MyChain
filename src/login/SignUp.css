@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: "LeeSeoyun";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.signupWrapper {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 30%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: "LeeSeoyun";
+}
+
+.signupItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.signupTitle {
+  font-size: 3rem;
+  padding: 1.5rem;
+  font-weight: 800;
+}
+
+.signupForm {
+  background-color: rgb(119, 111, 168);
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 1rem;
+  font-weight: 700;
+  border-radius: 1.4rem;
+}
+
+.signupInput {
+  height: 3rem;
+  font-size: 1.4rem;
+  width: 90%;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 1.4rem;
+  border: none;
+  font-family: "LeeSeoyun";
+}
+
+.signupInput:hover {
+  background-color: rgb(212, 207, 221);
+}
+
+.email_unable {
+  color: rgb(151, 40, 40);
+  font-family: 200;
+  font-size: 1.2rem;
+  font-family: "LeeSeoyun";
+}
+
+.loginBtn {
+  background-color: darkslateblue;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 2rem;
+  font-weight: 700;
+  border-radius: 1.4rem;
+}
+
+.signup_btn_wrap {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 20%);
+  text-align: center;
+}
+
+.signup_btn_item {
+  display: flex;
+  cursor: pointer;
+  flex-direction: row;
+}
+
+.signup_btn_connect {
+  background-color: #15b645;
+  height: 6.7rem;
+  width: 10rem;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 2rem 1rem 2rem 0.8rem;
+  font-weight: 700;
+  border-radius: 1.4rem;
+  margin-right: 1rem;
+}
+
+.signup_btn_wallet {
+  background-color: rgb(119, 111, 168);
+  height: 6.7rem;
+  width: 10rem;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 2rem;
+  font-weight: 700;
+  border-radius: 1.4rem;
+  margin-right: 1rem;
+}
+
+.signup_btn_wallet:hover {
+  background-color: rgb(167, 156, 238);
+  cursor: pointer;
+}
+
+.signup_btn {
+  background-color: #eb75db;
+  color: #fff;
+  height: 6.7rem;
+  width: 10rem;
+  font-size: 1.4rem;
+  padding: 2rem;
+  font-weight: 700;
+  margin-left: 1rem;
+  border-radius: 1.4rem;
+}
+
+.signup_btn:hover {
+  background-color: #eba0e1;
+  cursor: pointer;
+}

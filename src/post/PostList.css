@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.postlist_wrap {
+  width: 80rem;
+}
+
+.postlist_title {
+  margin-top: -0.8rem;
+}
+
+.postlist_title_name {
+  color: black;
+  cursor: pointer;
+}
+
+.postlist_list > div:last-child {
+  border-bottom: 1px solid darkslateblue;
+}
+
+.postlist_list > div > div {
+  display: inline-block;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.postlist_num {
+  width: 10%;
+}
+
+.postlist_title {
+  width: 52%;
+  text-align: left;
+}
+
+.postlist_writer {
+  width: 12%;
+}
+
+.postlist_date {
+  width: 14%;
+}
+
+.postlist_count {
+  width: 12%;
+}

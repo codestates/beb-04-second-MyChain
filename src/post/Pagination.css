@@ -1,0 +1,32 @@
+.board_page {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.board_page a {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  vertical-align: middle;
+  border: 3px solid darkslateblue;
+  line-height: 2.5rem;
+  border-radius: 999rem;
+  font-weight: bold;
+}
+
+.arrow_icon {
+  padding-top: 3px;
+  color: darkslateblue;
+}
+
+.board_page a.num {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: darkslateblue;
+}
+
+.board_page a:hover {
+  background-color: darkslateblue;
+  color: #fff;
+  cursor: pointer;
+}

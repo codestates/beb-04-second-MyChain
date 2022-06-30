@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.navWrapper {
+  background-color: darkslateblue;
+  width: 100vw;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  display: flex;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logoText {
+  margin-left: 0.4rem;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
+
+.searchBar {
+  display: flex;
+  flex: 1 1 0%;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  align-items: center;
+  background-color: rgb(119, 111, 168);
+  border-radius: 0.8rem;
+}
+
+.searchBar:hover {
+  background-color: rgb(134, 126, 189);
+}
+
+.searchIcon {
+  color: #fff;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.75rem;
+}
+
+.searchInput {
+  height: 2rem;
+  width: 100%;
+  border-width: 0px;
+  background-color: transparent;
+  outline-width: 0px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-left: 0px;
+  color: #e6e8eb;
+}
+
+.searchInput::placeholder {
+  color: rgb(189, 184, 184);
+  font-size: 1rem;
+}
+
+.headerItems {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.tradeBtn {
+  color: #fff;
+  font-size: 1.4rem;
+  padding-right: 2rem;
+  font-weight: 700;
+}
+
+.tradeBtn:hover {
+  color: rgb(167, 156, 238);
+  cursor: pointer;
+}
+.profileIcon {
+  color: #fff;
+  margin-top: 8px;
+  margin-right: 2rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.profileIcon:hover {
+  color: rgb(167, 156, 238);
+  cursor: pointer;
+}
+
+.walletIcon {
+  color: #fff;
+  margin-top: 8px;
+  margin-right: 1rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.walletIcon:hover {
+  color: rgb(167, 156, 238);
+  cursor: pointer;
+}

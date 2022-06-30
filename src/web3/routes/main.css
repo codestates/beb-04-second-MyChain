@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: "PFStardust";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/PFStardust.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.nft_mint_wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.nft_mint_wraptext {
+  font-size: 3rem;
+  font-weight: 800;
+  font-family: "PFStardust";
+  border: 0.5rem solid #eb75db;
+  border-radius: 99rem;
+  padding: 0 1rem 0 1rem;
+  background-color: #eb75db;
+}
+
+.nft_mint_btn {
+  font-family: "PFStardust";
+  background-color: #3ece75;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 1rem;
+  margin-top: 2rem;
+  font-weight: 900;
+  border-radius: 1.4rem;
+  margin-right: 1rem;
+  border: none;
+}
+
+.nft_mint_btn:hover {
+  cursor: pointer;
+  background-color: #eb75db;
+  color: #fff;
+}
+
+.nft_mint_gif {
+  background: url("https://gateway.pinata.cloud/ipfs/QmYUZqAz72cey8gzYzM3QNwt9AmZa2P5CpuoTcECASJKbP");
+  background-size: cover;
+  padding: 5rem;
+  position: absolute;
+  left: 8.8rem;
+}
