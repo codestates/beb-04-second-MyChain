@@ -113,6 +113,26 @@ app.post("/boardWriting", (req, res) => {
   );
 });
 
+app.post("/postView", (req, res) => {
+  const id = req.body.id;
+  connection.query("SELECT * FROM board where id=?", id, function(
+    err,
+    rows,
+    fields
+  ) {
+    if (err) {
+      console.log(err);
+    } else {
+      if (rows.length < 1) {
+        console.log("error");
+      } else {
+        console.log("조회성공");
+        res.send(rows);
+      }
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Connect at http://localhost:${port}`);
 });
