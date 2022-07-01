@@ -2,12 +2,11 @@ import React from "react";
 import "./Post.css";
 import { Link } from "react-router-dom";
 import { AiFillEdit, AiOutlineStop } from "react-icons/ai";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { useCookies } from "react-cookie";
+import swal from "sweetalert";
 
 function Post() {
-  // const [cookies, setCookie, removeCookie] = useCookies();
   let navigate = useNavigate();
   const cookieToWriter = document.cookie.slice(3).replace("%40", "@");
   const [boardForm, boardSignForm] = useState({
@@ -36,10 +35,32 @@ function Post() {
       })
         .then((response) => {
           if (response.status >= 200 && response.status <= 204) {
-            alert("글쓰기 성공");
           }
         })
         .then(() => {
+          swal({
+            title: "Writing Success!",
+            text: "Get Rewards!",
+            icon: "success",
+            buttons: {
+              confirm: {
+                className: "btn btn-success",
+              },
+            },
+          }).then((rewards) => {
+            if (rewards) {
+              swal({
+                title: "Get Coin!",
+                text: "My Balance : ",
+                type: "success",
+                buttons: {
+                  confirm: {
+                    className: "btn btn-success",
+                  },
+                },
+              });
+            }
+          });
           navigate("/");
         });
       //.then((res) => res.json().then((msg) => setResp(msg["message"])));
@@ -78,8 +99,7 @@ function Post() {
       <div className="post_btn_wrap">
         <div className="post_btn_item">
           <div className="post_write_btn" onClick={clickWriting}>
-            <AiFillEdit />
-            Writing
+            <AiFillEdit /> Writing
           </div>
           <Link to="/">
             <div className="post_cancel">

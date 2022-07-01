@@ -24,7 +24,6 @@ function Main() {
         }).then((res) =>
           res.json().then((result) => {
             ary.push(result);
-            //console.log(result);
             setResp(result);
           })
         );
@@ -71,7 +70,7 @@ function Main() {
                 id={list.id}
                 title={list.title}
                 writer={list.writer}
-                createdAt={list.created_at.slice(0, 10)}
+                createdAt={list.createdAt}
               />
             ))}
           </div>

@@ -1,8 +1,11 @@
 import React from "react";
 import "./SignUp.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 function SignUp({ account, onClickConnect }) {
+  let navigate = useNavigate();
   const [emailMessage, setEmailMessage] = useState("");
   const [pwdMessage, setPwdMessage] = useState("");
   const [setResp] = useState("");
@@ -18,7 +21,7 @@ function SignUp({ account, onClickConnect }) {
     var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     // 형식에 맞는 경우 true 리턴
     const okFlag = regExp.test(e.target.value);
-    console.log("이메일 유효성 검사 :: ", regExp.test(e.target.value));
+
     if (okFlag) {
       setEmailMessage("");
     } else {
@@ -27,7 +30,6 @@ function SignUp({ account, onClickConnect }) {
   };
   //비밀번호 유효성 검사
   const pwdChk = () => {
-    console.log("by name  = " + document.getElementsByName("pwd_chk")[0].value);
     if (signForm.pwd !== document.getElementsByName("pwd_chk")[0].value) {
       setPwdMessage("비밀번호가 일치하지 않습니다.");
     } else {
@@ -56,6 +58,11 @@ function SignUp({ account, onClickConnect }) {
       } catch (error) {
         console.error(error);
       }
+      swal({
+        title: "Create Account Success!",
+        icon: "success",
+      });
+      navigate("/profile");
     } else if (emailMessage !== "" || pwdMessage !== "") {
       alert("형식에 맞게 기입하시오");
     }
