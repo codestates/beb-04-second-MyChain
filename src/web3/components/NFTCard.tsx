@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Link } from "react-router-dom";
+import swal from "sweetalert";
 import "./NFTCard.css";
 
 interface NFTCardProps {
@@ -7,6 +7,16 @@ interface NFTCardProps {
 }
 
 const NFTCard: FC<NFTCardProps> = ({ animalType }) => {
+  const waitList = async () => {
+    swal("서비스 준비 중입니다 !", {
+      icon: "warning",
+      buttons: {
+        confirm: {
+          className: "btn btn-warning",
+        },
+      },
+    });
+  };
   return (
     <>
       <div>
@@ -20,12 +30,12 @@ const NFTCard: FC<NFTCardProps> = ({ animalType }) => {
       <br />
       <div className="nft_btn_wrap">
         <div className="nft_btn_item">
-          <Link to="nftlist">
-            <div className="nft_list_btn">NFT List</div>
-          </Link>
-          <Link to="nftsell">
-            <div className="nft_sell_btn">NFT Sell</div>
-          </Link>
+          <div className="nft_list_btn" onClick={waitList}>
+            NFT List
+          </div>
+          <div className="nft_sell_btn" onClick={waitList}>
+            NFT Sell
+          </div>
         </div>
       </div>
     </>

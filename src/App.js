@@ -10,7 +10,8 @@ import Wallet from "./pages/Wallet";
 import Nav from "./components/Nav";
 import Login from "./login/Login";
 import SignUp from "./login/SignUp";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import swal from "sweetalert";
 // import Web3 from "web3";
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
         // 👉 window.ethereum.request 을 console.log에 찍어보면 확인할수 있다
 
         setAccount(accounts[0]);
-        console.log(accounts);
+
         // 연결된 메타마스크의 주소를 useState에 담는다
       } else {
         // 메타마스크가 설치되어있지 않다면 👉 alert 문구가 나온다
@@ -38,11 +39,11 @@ function App() {
       // 에러가 발생한다면 catch 실행
       console.error(error); // 👉 에러가 발생했다고 출력
     }
+    swal({
+      title: "Wallet Connected!",
+      icon: "success",
+    });
   };
-
-  useEffect(() => {
-    Connect(); // getAccount 한번만 실행
-  }, [account]);
 
   return (
     <>

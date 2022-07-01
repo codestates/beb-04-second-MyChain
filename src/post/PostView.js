@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import "./PostView.css";
 import { AiFillEdit, AiOutlineStop } from "react-icons/ai";
 
@@ -12,11 +11,21 @@ function PostView() {
 
   useEffect(() => {
     const postData = async () => {
-      const res = await axios.get(
-        "https://gateway.pinata.cloud/ipfs/QmbTrmBRSrpySZMMKW99MP6yaN9Mf5btKWUDgP4FTTN19j"
-      ); // 백엔드에서 게시물 작성한 json 데이터 get 요청
-      // 불러온 json 데이터를 useState에 담는다
-      setPosts(res.data);
+      try {
+        fetch("http://localhost:3001/selectBoard", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(),
+        }).then((res) =>
+          res.json().then((result) => {
+            setPosts(result);
+          })
+        );
+      } catch (error) {
+        console.error(error);
+      }
     };
     postData();
   }, []);

@@ -12,9 +12,10 @@ privateKey varchar(255)
 
 <!-- 게시판 테이블 생성 -->
 
-CREATE TABLE board (
+create table board (
 id int PRIMARY KEY AUTO_INCREMENT,
 title varchar(255),
+content varchar(1000),
 writer varchar(255),
 created_at timestamp default now(),
 views int
@@ -40,3 +41,4 @@ DESC board;
 <!-- 테이블을 삭제하고 다시 만들경우 -->
 
 drop table users;
+drop table board;
