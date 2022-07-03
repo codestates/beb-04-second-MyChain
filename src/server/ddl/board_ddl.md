@@ -18,7 +18,7 @@ title varchar(255),
 content varchar(1000),
 writer varchar(255),
 created_at timestamp default now(),
-views int
+views int default 0
 );
 
 <!-- 조회 -->

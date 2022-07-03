@@ -2,7 +2,7 @@ import React from "react";
 import "./PostList.css";
 import { Link } from "react-router-dom";
 
-function PostList({ id, title, writer, createdAt }) {
+function PostList({ id, title, writer, created_at, views, nickName }) {
   return (
     <div className="postlist_wrap">
       <div className="postlist_title"></div>
@@ -15,9 +15,9 @@ function PostList({ id, title, writer, createdAt }) {
                 <div className="postlist_title_name">{title}</div>
               </Link>
             </div>
-            <div className="postlist_writer">{writer}</div>
-            <div className="postlist_date">{createdAt}</div>
-            <div className="postlist_count">123</div>
+            <div className="postlist_writer">{nickName}</div>
+            <div className="postlist_date">{created_at}</div>
+            <div className="postlist_count">{views}</div>
           </div>
         </div>
       </div>

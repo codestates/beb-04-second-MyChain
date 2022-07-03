@@ -80,17 +80,21 @@ app.post("/ff", (req, res) => {
 });
 
 app.post("/selectBoard", (req, res) => {
-  connection.query("SELECT * FROM board", function(err, rows, fields) {
-    if (err) {
-      console.log("실패");
-    } else {
-      if (rows.length < 1) {
-        console.log("조회된결과가 하나도 없습니다.");
+  connection.query(
+    "SELECT b.id, b.title, b.writer, b.created_at, b.views, u.nickName FROM users as u JOIN board as b on u.userName = b.writer;",
+    function(err, rows, fields) {
+      if (err) {
+        console.log("실패");
       } else {
-        res.send(rows);
+        if (rows.length < 1) {
+          console.log("조회된결과가 하나도 없습니다.");
+        } else {
+          console.log(rows);
+          res.send(rows);
+        }
       }
     }
-  });
+  );
 });
 app.post("/boardWriting", (req, res) => {
   const valExtract = req.body.boardForm;

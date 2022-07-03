@@ -70,7 +70,9 @@ function Main() {
                 id={list.id}
                 title={list.title}
                 writer={list.writer}
-                createdAt={list.createdAt}
+                created_at={list.created_at.slice(0, 10)}
+                views={list.views}
+                nickName={list.nickName}
               />
             ))}
           </div>

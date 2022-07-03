@@ -48,7 +48,9 @@ function PostView() {
               <div className="post_view_title">{cont.title}</div>
               <div className="post_view_title_flex">
                 <div className="post_view_writer">{cont.writer}</div>
-                <div className="post_view_date">{cont.createdAt}</div>
+                <div className="post_view_date">
+                  {cont.created_at.slice(0, 19)}
+                </div>
               </div>
               <br />
               <hr />
